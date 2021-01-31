@@ -10,6 +10,7 @@ provider:
 functions:
   app:
     handler: wsgi_handler.handler
+    timeout: 120
     events:
       - http: 
           method: ANY 

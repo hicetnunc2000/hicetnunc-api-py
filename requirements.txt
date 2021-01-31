@@ -2,3 +2,4 @@ flask_restx
 Flask
 requests
 flask_cors
+ipfshttpclient==0.7.0a1

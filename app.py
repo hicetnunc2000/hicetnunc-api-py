@@ -6,7 +6,7 @@ from flask_cors import CORS
 # ROUTES
 
 from routes.mfp import api as mfp_api
-#from routes.ungrund import api as objkt_api
+from routes.nfts import api as objkt_api
 
 app = Flask(__name__)
 
@@ -21,7 +21,7 @@ api = Api(version = 'v1.0.0',
 # NAMESPACES
 
 api.add_namespace(mfp_api)
-#api.add_namespace(objkt_api)
+api.add_namespace(objkt_api)
 
 api.init_app(app)
 
