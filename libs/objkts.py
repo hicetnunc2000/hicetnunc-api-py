@@ -25,7 +25,20 @@ class Objkt:
                 if e1['tk_id'] == e2['tk_id']:
                     e1.update(e2)
         
-        return ledger
+        for e1 in ledger:
+            for e2 in ledger:
+                if e1['tk_id'] == e2['tk_id']:
+                    print(e2['address'].startswith('KT'))
+                    if e2['address'].startswith('KT') and int(e2['tk_id']) >= 8 :
+                        #print(self.swap_metadata('mainnet', e2['address']))
+                        print(e2)
+                        e1['swap'] = e2['address']
+                        ledger.remove(e2)
+
+                    #print(self.swap_metadata('mainnet', e2['address']))
+                    #e1.update(e2['a'])
+        print(ledger)
+        return list(filter(lambda x : int(x['tk_id']) >= 8 and int(x['tk_id']) != 10 and int(x['tk_id']) != 11, ledger))
     
     def tz_ledger(self, network, kt, tz):
         ledger = self.get_ledger(network, kt)
@@ -68,10 +81,7 @@ class Objkt:
             'tk_id' : e['data']['key']['value'],
             'metadata' : self.get_json(e['data']['value']['children'][1]['children'][0]['value'].split('ipfs://')[1])
         } for e in big_map ]
-        
-        for e in arr:
-            e['view'] = self.get_json(e['metadata']['NFT'].split('/')[4])
-        
+    
         return arr
     
     def get_json(self, cid):

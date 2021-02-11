@@ -13,9 +13,7 @@ api = Namespace('objkt')
 @api.route('/swaps')
 class swaps(Resource):
     def get(self):
-
         return { 'result' :  o.swaps('mainnet') }
-
 
 @api.route('/feed')
 class feed(Resource):
@@ -65,3 +63,13 @@ class swap_metadata(Resource):
     def post(self):
         payload = v.read_requests(request)
         return { 'result' : o.swap_metadata('mainnet', payload['kt']) }
+
+@api.route('/ledger')
+@api.doc(params={
+    'tz': 'tz address',
+    'network': 'delphi/mainnet'
+})
+class ledger(Resource):
+    def post(self):
+        payload = v.read_requests(request)
+        return { 'result' : o.get_ledger('mainnet', 'KT1M2JnD1wsg7w2B4UXJXtKQPuDUpU2L7cJH') }
