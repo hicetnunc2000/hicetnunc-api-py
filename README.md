@@ -1,6 +1,7 @@
 # hicetnunc-api-py
 
-```the present repository presents a microservice for hDAO dApp data
+```
+the present repository presents a microservice for hDAO dApp data
 ```
 ```
 docker image build -t hicetnunc-api-py:1.0 .
